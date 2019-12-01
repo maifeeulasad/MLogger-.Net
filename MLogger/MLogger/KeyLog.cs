@@ -25,17 +25,6 @@ namespace MLogger
             UnhookWindowsHookEx(_hookID);
 
 
-
-
-
-
-
-
-
-
-
-
-
         }
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
