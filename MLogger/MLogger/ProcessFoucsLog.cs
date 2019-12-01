@@ -5,12 +5,8 @@ using System.Runtime.InteropServices;
 
 namespace MLogger
 {
-    /*
-     * by this code u will be notified for each foreground change and the console will print the process PID and it's name I bet pretty late answer but .. thats the life :P
-     */
-    class Test 
+    class ProcessFoucsLog 
     {
-        // Delegate and imports from pinvoke.net:
 
         delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType,
             IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
@@ -32,22 +28,18 @@ namespace MLogger
 
 
 
-        // Constants from winuser.h
         const uint EVENT_SYSTEM_FOREGROUND = 3;
         const uint WINEVENT_OUTOFCONTEXT = 0;
 
-        // Need to ensure delegate is not collected while we're using it,
-        // storing it in a class field is simplest way to do this.
+
         static WinEventDelegate procDelegate = new WinEventDelegate(WinEventProc);
 
         /*
         public static void Main()
         {
-            // Listen for foreground changes across all processes/threads on current desktop...
             IntPtr hhook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, IntPtr.Zero,
                     procDelegate, 0, 0, WINEVENT_OUTOFCONTEXT);
 
-            // MessageBox provides the necessary mesage loop that SetWinEventHook requires.
             MessageBox.Show("Tracking focus, close message box to exit.");
 
             UnhookWinEvent(hhook);
@@ -67,8 +59,6 @@ namespace MLogger
         {
             IntPtr hwnd = GetForegroundWindow();
 
-            // The foreground window can be NULL in certain circumstances, 
-            // such as when a window is losing activation.
             if (hwnd == null)
                 return;
 
@@ -83,10 +73,9 @@ namespace MLogger
                     Console.WriteLine("Process name is {0}", p.ProcessName);
                     return;
                 }
-                //return;
             }
 
-            Console.WriteLine("Unknown");
+            Console.WriteLine("null");
         }
     }
 }
