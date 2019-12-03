@@ -10,7 +10,7 @@ namespace MLogger
 {
     class SystemDetails
     {
-        private static string GetMAC()
+        public static string GetMAC()
         {
             var macAddr = (from nic in NetworkInterface.GetAllNetworkInterfaces()
                            where nic.OperationalStatus == OperationalStatus.Up
@@ -18,7 +18,7 @@ namespace MLogger
             Console.WriteLine(macAddr);
             return macAddr;
         }
-        private static string GetSystemInfo()
+        public static string GetSystemInfo()
         {
             String command = @"/c systeminfo";
             ProcessStartInfo cmdsi = new ProcessStartInfo("cmd.exe");

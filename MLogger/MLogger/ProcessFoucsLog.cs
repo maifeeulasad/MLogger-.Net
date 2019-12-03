@@ -34,17 +34,15 @@ namespace MLogger
 
         static WinEventDelegate procDelegate = new WinEventDelegate(WinEventProc);
 
-        /*
-        public static void Main()
+        public ProcessFoucsLog()
         {
             IntPtr hhook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, IntPtr.Zero,
                     procDelegate, 0, 0, WINEVENT_OUTOFCONTEXT);
 
-            MessageBox.Show("Tracking focus, close message box to exit.");
+            Application.Run();
 
             UnhookWinEvent(hhook);
         }
-        */
 
         static void WinEventProc(IntPtr hWinEventHook, uint eventType,
             IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
