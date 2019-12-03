@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Net.NetworkInformation;
+using System.Linq;
 
 namespace MLogger
 {
@@ -9,6 +11,7 @@ namespace MLogger
     {
         public static void Main()
         {
+            //Console.WriteLine(SystemDetails.GetSystemInfo());
             new MLogger();
         }
     }
