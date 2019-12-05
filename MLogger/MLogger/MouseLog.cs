@@ -18,13 +18,9 @@ namespace MLogger
 
         public MouseLog()
         {
-
             _hookID = SetHook(_proc);
-
             Application.Run();
-
             UnhookWindowsHookEx(_hookID);
-
         }
 
 
@@ -56,9 +52,7 @@ namespace MLogger
 
         {
 
-            if (nCode >= 0 &&
-
-                MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)
+            if (nCode >= 0 && MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)
 
             {
 

