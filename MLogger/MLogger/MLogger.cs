@@ -10,8 +10,11 @@ namespace MLogger
     {
         public MLogger()
         {
+            new MouseLog();
+            /*
             new KeyLog();
             new ProcessFoucsLog();
+            */        
         }
     }
 }
