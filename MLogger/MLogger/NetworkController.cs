@@ -1,30 +1,36 @@
-﻿using MLogger.model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MLogger
 {
     class NetworkController
     {
-        private static readonly HttpClient client = new HttpClient();
         public static async Task SendUserDataAsync()
         {
-            var values = new Dictionary<string, string>
+            HttpClient client = new HttpClient();
+
+            object userObject = new
             {
-                { "timeStamp", "1" },
-                { "macAddress", "2" },
-                { "systemInfo", "3" }
+                timeStamp = DateTime.Now.ToUniversalTime().ToString() ,
+                macAddress = SystemDetails.GetMAC(),
+                systemInfo = SystemDetails.GetSystemInfo() 
             };
 
-            var content = new FormUrlEncodedContent(values);
+            string jsonContent = JsonConvert.SerializeObject(userObject);
 
-            var response = await client.PostAsync("http://localhost:8080/user", content);
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:8080/user");
+            request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var responseString = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+            client.Dispose();
 
         }
     }
