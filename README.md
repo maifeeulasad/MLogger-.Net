@@ -9,3 +9,5 @@
  - [ ] Activity Logger
  - [x] User type Logger 
  - [x] Active window Logger
+ - [ ] Installed Software Logger
+ - [ ] History Logger (Read system data and decode past events) 
