@@ -1,11 +1,11 @@
 # MLogger-.Net
 
- - Key Logger
- - Mouse Logger
- - USB Port Logger
- - Network Adapter Logger
- - Network Speed Logger
- - System Details Logger
- - Activity Logger
- - User type Logger 
- - Active window Logger
+ - [x] Key Logger
+ - [x] Mouse Logger
+ - [ ] USB Port Logger
+ - [ ] Network Adapter Logger
+ - [ ] Network Speed Logger
+ - [x] System Details Logger
+ - [ ] Activity Logger
+ - [ ]User type Logger 
+ - [x] Active window Logger
