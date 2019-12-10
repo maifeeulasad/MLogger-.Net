@@ -7,5 +7,5 @@
  - [ ] Network Speed Logger
  - [x] System Details Logger
  - [ ] Activity Logger
- - [ ]User type Logger 
+ - [x] User type Logger 
  - [x] Active window Logger
