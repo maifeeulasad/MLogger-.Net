@@ -7,7 +7,7 @@
  - [ ] Network Speed Logger
  - [x] System Details Logger
  - [ ] Activity Logger
- - [x] User type Logger 
- - [x] Active window Logger
+ - [ ] User type Logger 
+ - [x] Active Window Logger
  - [ ] Installed Software Logger
  - [ ] History Logger (Read system data and decode past events) 
